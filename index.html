@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X32 + FL Studio 安全录音图文指南</title>
+    <title>X32 + FL Studio 安全錄音圖文指南</title>
     <style>
         body {
-            font-family: "Microsoft YaHei", sans-serif;
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
             background-color: #1e1e1e;
             color: #dcdcdc;
             margin: 0;
@@ -38,7 +38,7 @@
             margin-right: 15px; font-weight: bold;
         }
         
-        /* X32 UI 模拟 */
+        /* X32 UI 模擬 */
         .x32-screen {
             background-color: #001a1a;
             border: 4px solid #111;
@@ -55,7 +55,7 @@
         .x32-column { border: 1px solid #005555; padding: 10px; width: 45%; }
         .highlight-box { border: 2px dashed #ff0000; padding: 5px; animation: blink 1.5s infinite; }
 
-        /* FL Studio UI 模拟 */
+        /* FL Studio UI 模擬 */
         .fl-window {
             background-color: #3b4045;
             border: 1px solid #555;
@@ -77,7 +77,7 @@
             position: absolute; right: 0; top: -5px; box-shadow: 0 0 5px #000;
         }
 
-        /* 混音台模拟 */
+        /* 混音台模擬 */
         .mixer { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding-bottom: 20px;}
         .mixer-track {
             background-color: #4a5158; border: 1px solid #333; width: 100px;
@@ -92,7 +92,7 @@
         .arm-button { width: 20px; height: 20px; border-radius: 50%; background-color: #444; border: 2px solid #222; margin-top: 10px; cursor: pointer; }
         .arm-button.armed { background-color: #ff0000; box-shadow: 0 0 8px #ff0000; }
         
-        /* 路由断开特效 */
+        /* 路由斷開特效 */
         .routing-cable {
             position: absolute; bottom: -25px; width: 100%; height: 20px;
             border-top: 3px dashed #4CAF50; border-left: 3px dashed #4CAF50;
@@ -103,7 +103,7 @@
             left: -30px; top: 205px; z-index: 2; animation: blink 1s infinite;
         }
 
-        /* 顶部走带区 */
+        /* 頂部走帶區 */
         .transport-bar {
             background-color: #2a2e33; padding: 15px; border-radius: 5px;
             display: flex; justify-content: center; gap: 20px; margin-top: 15px; border: 1px solid #444;
@@ -117,18 +117,18 @@
 </head>
 <body>
 
-    <h1>X32 + FL Studio 安全录音极简操作图</h1>
+    <h1>X32 + FL Studio 安全錄音極簡操作圖</h1>
 
-    <!-- 步骤一 -->
+    <!-- 步驟一 -->
     <div class="step-container">
-        <h2 class="step-title"><span>1</span>X32 控台：设定讯号送出</h2>
-        <p>按下实体按钮 <b>Routing</b>，照着下方萤幕的位子设定：</p>
+        <h2 class="step-title"><span>1</span>X32 控台：設定訊號送出</h2>
+        <p>按下實體按鈕 <b>Routing</b>，照著下方螢幕的位置設定：</p>
         <div class="x32-screen">
             <div class="x32-tabs">
                 <div class="x32-tab">HOME</div>
                 <div class="x32-tab">OUT 1-16</div>
                 <div class="x32-tab">AUX OUT</div>
-                <div class="x32-tab active">CARD OUT (分页)</div>
+                <div class="x32-tab active">CARD OUT (分頁)</div>
             </div>
             <div class="x32-content">
                 <div class="x32-column">
@@ -141,39 +141,39 @@
                 </div>
             </div>
         </div>
-        <p class="note">⚠️ 录音音量 (Gain) 请控制在 -18dB 到 -12dB 之间，绝对不可亮红灯爆音！</p>
+        <p class="note">⚠️ 錄音音量 (Gain) 請控制在 -18dB 到 -12dB 之間，絕對不可亮紅燈爆音！</p>
     </div>
 
-    <!-- 步骤二 -->
+    <!-- 步驟二 -->
     <div class="step-container">
-        <h2 class="step-title"><span>2</span>FL Studio：设定驱动与防断讯</h2>
-        <p>点选左上角 <b>选项 (Options) -> 音频设置 (Audio Settings)</b>：</p>
+        <h2 class="step-title"><span>2</span>FL Studio：設定驅動與防斷訊</h2>
+        <p>點選左上角 <b>選項 (Options) -> 音頻設置 (Audio Settings)</b>：</p>
         <div class="fl-window">
-            <div class="fl-header">音频设置 (Audio Settings)</div>
-            <label>输入/输出 设备 (Device)：</label>
+            <div class="fl-header">音頻設置 (Audio Settings)</div>
+            <label>輸入/輸出 設備 (Device)：</label>
             <div class="fl-dropdown highlight-box">
                 👉 X-USB ASIO Driver
             </div>
-            <label>缓冲区长度 (Buffer length)：<span style="color:#ff8c00">【防爆音关键】</span></label>
+            <label>緩衝區長度 (Buffer length)：<span style="color:#ff8c00">【防爆音關鍵】</span></label>
             <div class="fl-slider-container">
                 <div style="display:flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
-                    <span>最小 (延迟低)</span>
-                    <span style="color:#ff8c00; font-weight:bold;">最大 (最稳定) 2048smp</span>
+                    <span>最小 (延遲低)</span>
+                    <span style="color:#ff8c00; font-weight:bold;">最大 (最穩定) 2048smp</span>
                 </div>
                 <div class="fl-slider">
                     <div class="fl-slider-thumb highlight-box"></div>
                 </div>
             </div>
         </div>
-        <p class="note">将 Buffer 拉到最右边最大值，电脑就不容易卡顿当机。</p>
+        <p class="note">將 Buffer 拉到最右邊最大值，電腦就不容易卡頓當機。</p>
     </div>
 
-    <!-- 步骤三 -->
+    <!-- 步驟三 -->
     <div class="step-container">
-        <h2 class="step-title"><span>3</span>FL 混音台：接线与断开监听 (核心保命步骤)</h2>
-        <p>按下 <b>F9</b> 打开混音台。设定 5 个独立输入源，并<b>务必将 5 轨连往主轨的虚线全部点断</b>：</p>
+        <h2 class="step-title"><span>3</span>FL 混音台：接線與斷開監聽 (核心保命步驟)</h2>
+        <p>按下 <b>F9</b> 打開混音台。設定 5 個獨立輸入源，並<b>務必將 5 軌連往主軌的虛線全部點斷</b>：</p>
         
-        <!-- 增加 padding-bottom 以容纳 5 根走线 -->
+        <!-- 增加 padding-bottom 以容納 5 根走線 -->
         <div class="mixer" style="padding-bottom: 110px;">
             <!-- Master Track -->
             <div class="mixer-track mixer-master">
@@ -185,10 +185,10 @@
             <div class="mixer-track">
                 <div class="track-input active highlight-box" style="font-size: 10px;">In 1: X-USB In 1</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
-                <div class="arm-button armed highlight-box" title="准备录音"></div>
+                <div class="arm-button armed highlight-box" title="準備錄音"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 1</div>
                 
-                <!-- 精准坐标：第1根线 (最高) -->
+                <!-- 精準座標：第1根線 (最高) -->
                 <div class="routing-cable" style="border-color: #333; left: -60px; width: 110px; top: 220px; height: 60px;"></div>
                 <div class="disconnect-x" style="left: -20px; top: 208px; font-size: 14px; width: max-content;">❌ 點掉</div>
             </div>
@@ -200,7 +200,7 @@
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 2</div>
                 
-                <!-- 精准坐标：第2根线 (跨越 Insert 1) -->
+                <!-- 精準座標：第2根線 (跨越 Insert 1) -->
                 <div class="routing-cable" style="border-color: #333; left: -187px; width: 237px; top: 235px; height: 45px;"></div>
                 <div class="disconnect-x" style="left: -20px; top: 223px; font-size: 14px; width: max-content;">❌ 點掉</div>
             </div>
@@ -212,7 +212,7 @@
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 3</div>
                 
-                <!-- 精准坐标：第3根线 (跨越 Insert 1, 2) -->
+                <!-- 精準座標：第3根線 (跨越 Insert 1, 2) -->
                 <div class="routing-cable" style="border-color: #333; left: -314px; width: 364px; top: 250px; height: 30px;"></div>
                 <div class="disconnect-x" style="left: -20px; top: 238px; font-size: 14px; width: max-content;">❌ 點掉</div>
             </div>
@@ -224,7 +224,7 @@
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 4</div>
                 
-                <!-- 精准坐标：第4根线 (跨越 Insert 1, 2, 3) -->
+                <!-- 精準座標：第4根線 (跨越 Insert 1, 2, 3) -->
                 <div class="routing-cable" style="border-color: #333; left: -441px; width: 491px; top: 265px; height: 15px;"></div>
                 <div class="disconnect-x" style="left: -20px; top: 253px; font-size: 14px; width: max-content;">❌ 點掉</div>
             </div>
@@ -236,13 +236,13 @@
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 5</div>
                 
-                <!-- 精准坐标：第5根线 (跨越前面所有轨) -->
+                <!-- 精準座標：第5根線 (跨越前面所有軌) -->
                 <div class="routing-cable" style="border-color: #333; left: -568px; width: 618px; top: 280px; height: 0px;"></div>
                 <div class="disconnect-x" style="left: -20px; top: 268px; font-size: 14px; width: max-content;">❌ 點掉</div>
             </div>
         </div>
 
-        <!-- 详细解说面板：图纸说明 -->
+        <!-- 詳細解說面板：圖紙說明 -->
         <div style="background-color: #1a1a1a; padding: 20px; border-left: 6px solid #ff0000; margin-top: 20px; border-radius: 0 8px 8px 0; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);">
             <h3 style="margin-top: 0; color: #ff3333; font-size: 1.2em; display: flex; align-items: center;">
                 <span style="font-size: 1.5em; margin-right: 10px;">⚠️</span> 為什麼必須點斷這 5 條綠色虛線？（防嘯叫保命關鍵）
@@ -257,18 +257,18 @@
         </div>
     </div>
 
-    <!-- 步骤四 -->
+    <!-- 步驟四 -->
     <div class="step-container">
-        <h2 class="step-title"><span>4</span>正式开录</h2>
-        <p>在软体正上方，按下红色录音键：</p>
+        <h2 class="step-title"><span>4</span>正式開錄</h2>
+        <p>在軟體正上方，按下紅色錄音鍵：</p>
         <div class="transport-bar">
             <button class="btn-play">▶️</button>
             <button class="btn-play">⏹️</button>
             <button class="btn-record highlight-box">⏺</button>
         </div>
-        <p>在弹出的选单中，选择 <b>"将音频录制到播放列表中作为音频剪辑"</b>，然后按下 <b>▶️ 播放键</b> 即可开始！</p>
+        <p>在彈出的選單中，選擇 <b>"將音頻錄製到播放列表中作為音頻剪輯"</b>，然後按下 <b>▶️ 播放鍵</b> 即可開始！</p>
         <div style="background-color: #520000; padding: 10px; border-left: 5px solid red; margin-top: 15px;">
-            <b>【最终确认】</b> 开录前，按一次 <code>Ctrl + S</code> 把专案存进笔电空间最大的硬碟中！笔电必须插上电源线！
+            <b>【最終確認】</b> 開錄前，按一次 <code>Ctrl + S</code> 把專案存進筆電空間最大的硬碟中！筆電必須插上電源線！
         </div>
     </div>
 
