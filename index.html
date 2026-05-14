@@ -126,6 +126,7 @@
 
     <h1>X32 + FL Studio 會議錄音與回放 SOP</h1>
 
+    <!-- 步驟一 -->
     <div class="step-container">
         <h2 class="step-title"><span>1</span>X32 控台：設定訊號輸出路由</h2>
         <p>於 X32 控台按下 <b>Routing</b> 鍵，並依下圖進行 Expansion Card 輸出分頁設定：</p>
@@ -150,6 +151,7 @@
         <p class="note">⚠️ 檢核：錄音輸入位準 (Gain) 應維持於 -18dB 至 -12dB 綠區，嚴禁亮紅燈。</p>
     </div>
 
+    <!-- 步驟二 -->
     <div class="step-container">
         <h2 class="step-title"><span>2</span>FL Studio：驅動程式與緩衝區檢修</h2>
         <p>進入軟體左上角 <b>選項 (Options) -> 音頻設置 (Audio Settings)</b>：</p>
@@ -173,6 +175,7 @@
         <p class="note">將 Buffer 設置為最大值，可有效降低系統負載，防止錄音過程發生中斷。</p>
     </div>
 
+    <!-- 步驟三 -->
     <div class="step-container">
         <h2 class="step-title"><span>3</span>FL 混音台：路由斷開與防嘯叫設定</h2>
         <p>按下 <b>F9</b> 開啟混音台。確認 5 個輸入源後，<b>務必手動點斷通往 Master 軌的路由虛線</b>：</p>
@@ -183,6 +186,7 @@
                 <div class="fader-slot"><div class="fader-knob"></div></div>
             </div>
 
+            <!-- Insert 1-5 -->
             <div class="mixer-track">
                 <div class="track-input active highlight-box" style="font-size: 10px;">In 1: X-USB In 1</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
@@ -236,6 +240,7 @@
         </div>
     </div>
 
+    <!-- 步驟四 -->
     <div class="step-container">
         <h2 class="step-title"><span>4</span>正式啟動錄音作業 (關鍵程序)</h2>
         <div style="background-color: #331a00; padding: 15px; border: 1px solid #ff8c00; border-radius: 5px; margin-bottom: 15px;">
@@ -257,6 +262,7 @@
         </ol>
     </div>
 
+    <!-- 步驟五 -->
     <div class="step-container">
         <h2 class="step-title"><span>5</span>回放檢查與路由復原</h2>
         <p>會議結束，按下 ⏹️ 結束錄音。欲執行回放檢查，請依循以下操作：</p>
@@ -281,16 +287,28 @@
         </div>
     </div>
 
+    <!-- 步驟六 -->
     <div class="step-container">
         <h2 class="step-title"><span>6</span>匯出標準音訊檔 (MP3 / WAV)</h2>
         <div class="export-flow">
-            File <span class="export-arrow">➔</span> Export <span class="export-arrow">➔</span> MP3 file...
+            File <span class="export-arrow">➔</span> Export <span class="export-arrow">➔</span> MP3 file... (或 WAV file)
         </div>
         <ol style="margin-top: 15px; padding-left: 20px; line-height: 1.8;">
             <li>指定儲存路徑與命名 (YYYYMMDD_內容.mp3)。</li>
             <li>Render 視窗維持系統預設值，直接按 <b>Start</b>。</li>
             <li>待渲染完成，即可取得便於分享與建檔的輕量化錄音檔。</li>
         </ol>
+
+        <!-- 新增：分軌匯出進階說明 -->
+        <div style="background-color: #2b2b2b; padding: 15px; border-left: 4px solid #ff8c00; margin-top: 20px; border-radius: 0 4px 4px 0;">
+            <h3 style="margin-top: 0; color: #ff8c00; font-size: 1.1em;">⚙️ 【進階操作】匯出獨立分軌檔 (Stems)</h3>
+            <p style="margin-bottom: 5px; line-height: 1.6; color: #ccc; font-size: 0.95em;">標準匯出會將所有聲音「烤成一塊蛋糕」（混合為單一檔案，無法再單獨調整單支麥克風）。若後製端要求提供 <b>獨立的 5 軌原始聲音</b> 進行重新混音，請執行以下設定：</p>
+            <ul style="margin-top: 0; padding-left: 20px; color: #eee; line-height: 1.6; font-size: 0.95em;">
+                <li>在彈出的 Render (渲染) 視窗中，找到右下角的 <b>Miscellaneous (雜項)</b> 區塊。</li>
+                <li>將 <b><code>Split mixer tracks</code> (分離混音軌道)</b> 選項打勾。</li>
+                <li>按下 <b>Start</b>，系統即會一次產出 5 個獨立的 WAV 音訊檔（例如 Insert 1.wav、Insert 2.wav... 等）。</li>
+            </ul>
+        </div>
     </div>
 
 </body>
