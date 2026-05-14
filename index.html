@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X32 + FL Studio 安全錄音圖文指南</title>
+    <title>X32 + FL Studio 會議錄音與回放 SOP</title>
     <style>
         body {
             font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
@@ -12,7 +12,7 @@
             margin: 0;
             padding: 20px;
         }
-        h1 { color: #ff8c00; text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        h1 { color: #ff8c00; text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; font-size: 1.8em; }
         .step-container {
             background-color: #2d2d2d;
             border-radius: 8px;
@@ -23,7 +23,7 @@
             border: 1px solid #444;
         }
         .step-title {
-            font-size: 1.5em;
+            font-size: 1.4em;
             color: #4CAF50;
             margin-top: 0;
             display: flex;
@@ -112,23 +112,29 @@
         .btn-play { background-color: #333; color: #4CAF50; border: none; width: 50px; height: 50px; font-size: 24px; cursor: pointer; border-radius: 5px;}
 
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        .note { font-size: 0.9em; color: #aaa; margin-top: 10px; font-style: italic; }
+        .note { font-size: 0.9em; color: #aaa; margin-top: 10px; }
+        
+        /* 回放與匯出區塊專用樣式 */
+        .playback-box { background-color: #111; border: 1px solid #555; border-radius: 5px; padding: 15px; margin-top: 10px; }
+        .playback-title { color: #00ffff; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .export-flow { background-color: #222; padding: 15px; border-radius: 5px; font-family: monospace; color: #4CAF50; font-size: 1.1em; display: flex; align-items: center; flex-wrap: wrap; margin-top: 10px;}
+        .export-arrow { color: #ff8c00; font-weight: bold; margin: 0 10px; }
+        .info-panel { background-color: #1f3a3a; padding: 12px; border-left: 4px solid #00ffff; margin-bottom: 12px; border-radius: 0 4px 4px 0; font-size: 0.95em; color: #e0e0e0;}
     </style>
 </head>
 <body>
 
-    <h1>X32 + FL Studio 安全錄音極簡操作圖</h1>
+    <h1>X32 + FL Studio 會議錄音與回放 SOP</h1>
 
-    <!-- 步驟一 -->
     <div class="step-container">
-        <h2 class="step-title"><span>1</span>X32 控台：設定訊號送出</h2>
-        <p>按下實體按鈕 <b>Routing</b>，照著下方螢幕的位置設定：</p>
+        <h2 class="step-title"><span>1</span>X32 控台：設定訊號輸出路由</h2>
+        <p>於 X32 控台按下 <b>Routing</b> 鍵，並依下圖進行 Expansion Card 輸出分頁設定：</p>
         <div class="x32-screen">
             <div class="x32-tabs">
                 <div class="x32-tab">HOME</div>
                 <div class="x32-tab">OUT 1-16</div>
                 <div class="x32-tab">AUX OUT</div>
-                <div class="x32-tab active">CARD OUT (分頁)</div>
+                <div class="x32-tab active">CARD OUT</div>
             </div>
             <div class="x32-content">
                 <div class="x32-column">
@@ -141,135 +147,150 @@
                 </div>
             </div>
         </div>
-        <p class="note">⚠️ 錄音音量 (Gain) 請控制在 -18dB 到 -12dB 之間，絕對不可亮紅燈爆音！</p>
+        <p class="note">⚠️ 檢核：錄音輸入位準 (Gain) 應維持於 -18dB 至 -12dB 綠區，嚴禁亮紅燈。</p>
     </div>
 
-    <!-- 步驟二 -->
     <div class="step-container">
-        <h2 class="step-title"><span>2</span>FL Studio：設定驅動與防斷訊</h2>
-        <p>點選左上角 <b>選項 (Options) -> 音頻設置 (Audio Settings)</b>：</p>
+        <h2 class="step-title"><span>2</span>FL Studio：驅動程式與緩衝區檢修</h2>
+        <p>進入軟體左上角 <b>選項 (Options) -> 音頻設置 (Audio Settings)</b>：</p>
         <div class="fl-window">
             <div class="fl-header">音頻設置 (Audio Settings)</div>
             <label>輸入/輸出 設備 (Device)：</label>
             <div class="fl-dropdown highlight-box">
                 👉 X-USB ASIO Driver
             </div>
-            <label>緩衝區長度 (Buffer length)：<span style="color:#ff8c00">【防爆音關鍵】</span></label>
+            <label>緩衝區長度 (Buffer length)：</label>
             <div class="fl-slider-container">
                 <div style="display:flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
-                    <span>最小 (延遲低)</span>
-                    <span style="color:#ff8c00; font-weight:bold;">最大 (最穩定) 2048smp</span>
+                    <span>最小 (低延遲)</span>
+                    <span style="color:#ff8c00; font-weight:bold;">最大 (提高穩定度) 2048smp</span>
                 </div>
                 <div class="fl-slider">
                     <div class="fl-slider-thumb highlight-box"></div>
                 </div>
             </div>
         </div>
-        <p class="note">將 Buffer 拉到最右邊最大值，電腦就不容易卡頓當機。</p>
+        <p class="note">將 Buffer 設置為最大值，可有效降低系統負載，防止錄音過程發生中斷。</p>
     </div>
 
-    <!-- 步驟三 -->
     <div class="step-container">
-        <h2 class="step-title"><span>3</span>FL 混音台：接線與斷開監聽 (核心保命步驟)</h2>
-        <p>按下 <b>F9</b> 打開混音台。設定 5 個獨立輸入源，並<b>務必將 5 軌連往主軌的虛線全部點斷</b>：</p>
+        <h2 class="step-title"><span>3</span>FL 混音台：路由斷開與防嘯叫設定</h2>
+        <p>按下 <b>F9</b> 開啟混音台。確認 5 個輸入源後，<b>務必手動點斷通往 Master 軌的路由虛線</b>：</p>
         
-        <!-- 增加 padding-bottom 以容納 5 根走線 -->
         <div class="mixer" style="padding-bottom: 110px;">
-            <!-- Master Track -->
             <div class="mixer-track mixer-master">
                 <div style="font-weight:bold; color:#fff;">Master</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
             </div>
 
-            <!-- Insert 1 -->
             <div class="mixer-track">
                 <div class="track-input active highlight-box" style="font-size: 10px;">In 1: X-USB In 1</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
-                <div class="arm-button armed highlight-box" title="準備錄音"></div>
+                <div class="arm-button armed highlight-box"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 1</div>
-                
-                <!-- 精準座標：第1根線 (最高) -->
                 <div class="routing-cable" style="border-color: #333; left: -60px; width: 110px; top: 220px; height: 60px;"></div>
-                <div class="disconnect-x" style="left: -20px; top: 208px; font-size: 14px; width: max-content;">❌ 點掉</div>
+                <div class="disconnect-x" style="left: -20px; top: 208px; font-size: 14px; width: max-content;">❌ 點斷</div>
             </div>
-
-            <!-- Insert 2 -->
             <div class="mixer-track">
                 <div class="track-input active" style="font-size: 10px;">In 2: X-USB In 2</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 2</div>
-                
-                <!-- 精準座標：第2根線 (跨越 Insert 1) -->
                 <div class="routing-cable" style="border-color: #333; left: -187px; width: 237px; top: 235px; height: 45px;"></div>
-                <div class="disconnect-x" style="left: -20px; top: 223px; font-size: 14px; width: max-content;">❌ 點掉</div>
+                <div class="disconnect-x" style="left: -20px; top: 223px; font-size: 14px; width: max-content;">❌ 點斷</div>
             </div>
-            
-            <!-- Insert 3 -->
             <div class="mixer-track">
                 <div class="track-input active" style="font-size: 10px;">In 3: X-USB In 3</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 3</div>
-                
-                <!-- 精準座標：第3根線 (跨越 Insert 1, 2) -->
                 <div class="routing-cable" style="border-color: #333; left: -314px; width: 364px; top: 250px; height: 30px;"></div>
-                <div class="disconnect-x" style="left: -20px; top: 238px; font-size: 14px; width: max-content;">❌ 點掉</div>
+                <div class="disconnect-x" style="left: -20px; top: 238px; font-size: 14px; width: max-content;">❌ 點斷</div>
             </div>
-
-            <!-- Insert 4 -->
             <div class="mixer-track">
                 <div class="track-input active" style="font-size: 10px;">In 4: X-USB In 4</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 4</div>
-                
-                <!-- 精準座標：第4根線 (跨越 Insert 1, 2, 3) -->
                 <div class="routing-cable" style="border-color: #333; left: -441px; width: 491px; top: 265px; height: 15px;"></div>
-                <div class="disconnect-x" style="left: -20px; top: 253px; font-size: 14px; width: max-content;">❌ 點掉</div>
+                <div class="disconnect-x" style="left: -20px; top: 223px; font-size: 14px; width: max-content;">❌ 點斷</div>
             </div>
-
-            <!-- Insert 5 -->
             <div class="mixer-track">
                 <div class="track-input active" style="font-size: 10px;">In 5: X-USB In 5</div>
                 <div class="fader-slot"><div class="fader-knob"></div></div>
                 <div class="arm-button armed"></div>
                 <div style="margin-top: 5px; font-size: 12px;">Insert 5</div>
-                
-                <!-- 精準座標：第5根線 (跨越前面所有軌) -->
                 <div class="routing-cable" style="border-color: #333; left: -568px; width: 618px; top: 280px; height: 0px;"></div>
-                <div class="disconnect-x" style="left: -20px; top: 268px; font-size: 14px; width: max-content;">❌ 點掉</div>
+                <div class="disconnect-x" style="left: -20px; top: 268px; font-size: 14px; width: max-content;">❌ 點斷</div>
             </div>
         </div>
 
-        <!-- 詳細解說面板：圖紙說明 -->
-        <div style="background-color: #1a1a1a; padding: 20px; border-left: 6px solid #ff0000; margin-top: 20px; border-radius: 0 8px 8px 0; box-shadow: 2px 2px 10px rgba(0,0,0,0.5);">
-            <h3 style="margin-top: 0; color: #ff3333; font-size: 1.2em; display: flex; align-items: center;">
-                <span style="font-size: 1.5em; margin-right: 10px;">⚠️</span> 為什麼必須點斷這 5 條綠色虛線？（防嘯叫保命關鍵）
-            </h3>
-            <p style="margin-bottom: 10px; line-height: 1.6; color: #eee; font-size: 1.05em;">這 5 條虛線代表著<b>「把收到的聲音直接送往 Master（電腦喇叭）」</b>的水管。如果我們不把它們點斷（如上圖變成暗灰色），將會引發以下毀滅性災難：</p>
-            <ul style="margin-top: 0; padding-left: 25px; color: #ccc; line-height: 1.8; font-size: 0.95em;">
-                <li><b>死循環嘯叫：</b>現場麥克風的聲音會被錄下，<b>同時</b>從您的 A17 筆電喇叭大聲播出來。播出來的聲音會再次被講台麥克風吸進去，瞬間形成無限放大的死循環，產生刺耳的「嘯叫 (Feedback)」，毀掉整個會議。</li>
-                <li><b>嚴重回音干擾：</b>因為我們把緩衝區 (Buffer) 拉到最大 (2048smp) 以確保錄音絕對不斷訊，這會導致聲音有近 1 秒的延遲。如果線沒斷，筆電會不斷播放「慢半拍的重播」，嚴重干擾您的判斷。</li>
-                <li><b>系統音亂入：</b>如果 Windows 突然發出「叮咚」的更新或防毒警告音，也會順著沒斷開的線，從筆電喇叭放出來嚇到旁邊的人。</li>
-                <li style="color: #4CAF50; font-weight: bold; font-size: 1.1em; margin-top: 10px; list-style-type: none; margin-left: -25px;">👉 結論：把線點斷！聲音就會乖乖留在 5 個獨立軌道裡被安全錄進硬碟，筆電絕對不會發出任何怪聲干擾會議，這才是最職人的做法！</li>
+        <div style="background-color: #1a1a1a; padding: 20px; border-left: 6px solid #ff0000; margin-top: 20px; border-radius: 0 8px 8px 0;">
+            <h3 style="margin-top: 0; color: #ff3333; font-size: 1.2em;">⚠️ 路由中斷之必要性說明</h3>
+            <p style="margin-bottom: 10px; line-height: 1.6; color: #eee;">斷開 Master 連結可防止音訊從筆電喇叭即時播出，有效杜絕下列事故：</p>
+            <ul style="margin-top: 0; padding-left: 25px; color: #ccc; line-height: 1.8;">
+                <li><b>物理嘯叫 (Feedback)：</b>防止麥克風與筆電喇叭產生死循環回授。</li>
+                <li><b>延遲聲干擾：</b>排除因緩衝值高而產生的 1 秒延遲監聽音。</li>
+                <li style="color: #4CAF50; font-weight: bold; margin-top: 10px; list-style-type: none; margin-left: -25px;">👉 處置標準：紅燈亮起代表已寫入硬碟，斷開虛線不影響錄製內容。</li>
             </ul>
         </div>
     </div>
 
-    <!-- 步驟四 -->
     <div class="step-container">
-        <h2 class="step-title"><span>4</span>正式開錄</h2>
-        <p>在軟體正上方，按下紅色錄音鍵：</p>
+        <h2 class="step-title"><span>4</span>正式啟動錄音作業 (關鍵程序)</h2>
+        <div style="background-color: #331a00; padding: 15px; border: 1px solid #ff8c00; border-radius: 5px; margin-bottom: 15px;">
+            <h3 style="color: #ff8c00; margin-top: 0; font-size: 1.1em;">⚠️ 第一步：設定存檔路徑 (不可省略)</h3>
+            <p style="margin: 5px 0;">錄音前務必先按下 <b>Ctrl + S</b>。請將專案檔存放在「剩餘空間最大」的非系統磁碟 (例如 D 槽)，以確保有足夠容量容納數小時的高品質音訊資料。</p>
+        </div>
+        
+        <p>確認筆電已連接交流電源（確保 CPU 全速運轉），接續執行走帶指令：</p>
         <div class="transport-bar">
-            <button class="btn-play">▶️</button>
+            <button class="btn-play highlight-box">▶️</button>
             <button class="btn-play">⏹️</button>
             <button class="btn-record highlight-box">⏺</button>
         </div>
-        <p>在彈出的選單中，選擇 <b>"將音頻錄製到播放列表中作為音頻剪輯"</b>，然後按下 <b>▶️ 播放鍵</b> 即可開始！</p>
-        <div style="background-color: #520000; padding: 10px; border-left: 5px solid red; margin-top: 15px;">
-            <b>【最終確認】</b> 開錄前，按一次 <code>Ctrl + S</code> 把專案存進筆電空間最大的硬碟中！筆電必須插上電源線！
+        
+        <ol style="line-height: 1.8; padding-left: 20px;">
+            <li>按下 🔴 <b>錄音鍵 (Record Arm)</b>。</li>
+            <li>於選單選取 <b>"錄製音頻至播放清單作為音頻剪輯"</b>。</li>
+            <li>按下 ▶️ <b>播放鍵 (Play)</b> 啟動時間軸，正式開始錄製。</li>
+        </ol>
+    </div>
+
+    <div class="step-container">
+        <h2 class="step-title"><span>5</span>回放檢查與路由復原</h2>
+        <p>會議結束，按下 ⏹️ 結束錄音。欲執行回放檢查，請依循以下操作：</p>
+        
+        <div style="border-left: 4px solid #4CAF50; padding-left: 15px; margin-bottom: 20px;">
+            <h3 style="color: #4CAF50; margin-top: 0;">一、 恢復路由連線</h3>
+            <p>將步驟三點斷之 5 條虛線<b>重新接回 Master 軌</b>，使聲音得以輸出至總匯流排。</p>
         </div>
+
+        <div class="playback-box">
+            <div class="playback-title">二、 透過 X32 控台路由至現場喇叭 (矩陣架構)</div>
+            <div class="info-panel">
+                💡 <b>【回放邏輯】</b> 5 軌聲音會匯總至 Master 軌，再經由 <b>USB 1 & 2</b> 送回 X32。<br>
+                因此現場回放時，您只需操作接收 USB 1/2 訊號的推桿即可。
+            </div>
+            <ol style="margin-top: 5px; padding-left: 20px; line-height: 1.6;">
+                <li>X32 點選 <b>Routing -> Inputs</b>，將第一組改為 <b>Card 1-8</b>。</li>
+                <li><b>推起 CH1 與 CH2 實體推桿</b>（接收來自電腦之聲音）。</li>
+                <li><b>推起對應的 Matrix 矩陣推桿</b>（將聲音送往現場擴大機）。</li>
+                <li>點擊 FL Studio ▶️ 鍵開始回放。</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="step-container">
+        <h2 class="step-title"><span>6</span>匯出標準音訊檔 (MP3 / WAV)</h2>
+        <div class="export-flow">
+            File <span class="export-arrow">➔</span> Export <span class="export-arrow">➔</span> MP3 file...
+        </div>
+        <ol style="margin-top: 15px; padding-left: 20px; line-height: 1.8;">
+            <li>指定儲存路徑與命名 (YYYYMMDD_內容.mp3)。</li>
+            <li>Render 視窗維持系統預設值，直接按 <b>Start</b>。</li>
+            <li>待渲染完成，即可取得便於分享與建檔的輕量化錄音檔。</li>
+        </ol>
     </div>
 
 </body>
