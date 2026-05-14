@@ -7,7 +7,7 @@
 
     <!-- 這是專門給 LINE / FB 抓取預覽畫面用的標籤 -->
     <meta property="og:title" content="X32 + FL Studio 會議錄音標準 SOP">
-    <meta property="og:description" content="包含快速流程圖、防呆設定、匯出教學與操作疑難排解。">
+    <meta property="og:description" content="包含快速戰術流程圖、防呆設定、匯出教學與實戰疑難排解。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://513889.github.io/X32-FL-Studio/">
 
@@ -115,11 +115,14 @@
         .disconnect-x {
             position: absolute; color: red; font-weight: bold; font-size: 20px;
             z-index: 2; top: 208px;
+            animation: blink 1s infinite;
         }
         
         .transport-bar { background-color: #2a2e33; padding: 15px; border-radius: 5px; display: flex; justify-content: center; gap: 20px; margin-top: 15px; border: 1px solid #444; }
         .btn-record { background-color: #ff0000; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; box-shadow: 0 0 10px #ff0000; }
         .btn-play { background-color: #333; color: #4CAF50; border: none; width: 50px; height: 50px; font-size: 24px; cursor: pointer; border-radius: 5px;}
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .note { font-size: 0.9em; color: #aaa; margin-top: 10px; }
         
@@ -153,9 +156,9 @@
     <h1 class="main-title">X32 + FL Studio 會議錄音標準 SOP</h1>
 
     <!-- ========================================== -->
-    <!-- 區塊一：操作快速流程圖                     -->
+    <!-- 區塊一：實戰快速流程圖                     -->
     <!-- ========================================== -->
-    <h2 class="section-title">📌 操作快速流程圖</h2>
+    <h2 class="section-title">📌 實戰快速流程圖</h2>
     
     <div class="flow-container">
         <!-- 公版跳過提示 -->
